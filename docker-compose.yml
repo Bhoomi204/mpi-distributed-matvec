@@ -1,0 +1,27 @@
+services:
+  system1:
+    build: .
+    container_name: system1
+    hostname: system1
+    volumes:
+      - .:/workspace
+    networks:
+      mpi_net:
+        ipv4_address: 172.28.0.10
+
+  system2:
+    build: .
+    container_name: system2
+    hostname: system2
+    volumes:
+      - .:/workspace
+    networks:
+      mpi_net:
+        ipv4_address: 172.28.0.11
+
+networks:
+  mpi_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.0.0/24
